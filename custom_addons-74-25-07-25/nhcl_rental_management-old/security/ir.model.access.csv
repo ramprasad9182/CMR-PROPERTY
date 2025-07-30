@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+nhcl_rental_management.access_mall_main,access_mall_main,nhcl_rental_management.model_mall_main,base.group_user,1,1,1,1
+nhcl_rental_management.access_mall_demo,access_mall_demo,nhcl_rental_management.model_mall_demo,base.group_user,1,1,1,1
+nhcl_rental_management.access_tenant_type,access_tenant_type,nhcl_rental_management.model_tenant_type,base.group_user,1,1,1,1
+nhcl_rental_management.access_preventing_maintenance,access_preventing_maintenance,nhcl_rental_management.model_preventing_maintenance,base.group_user,1,1,1,1
+nhcl_rental_management.access_support_documents,access_support_documents,nhcl_rental_management.model_support_documents,base.group_user,1,1,1,1
+nhcl_rental_management.access_year_add,access_year_add,nhcl_rental_management.model_year_add,base.group_user,1,1,1,1
+access_account_move_approval,access_account_move_approval,account.model_account_move,nhcl_rental_management.group_account_approval,1,1,0,0
+
