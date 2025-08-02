@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="add_fixed" model="ir.ui.view">
+        <field name="name">tenancy.fixed</field>
+        <field name="model">tenancy.details</field>
+        <field name="inherit_id" ref="rental_management.tenancy_details_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='contract_agreement']" position="after">
+                <h4 style="color:#714B67;">
+                    Breakdown
+                </h4>
+                <br/>
+                <field name="sft_fixed" widget="radio" options="{'horizontal': True}"
+                       readonly="is_brand_name_readonly"/>
+                <field name="carpet_area" invisible="sft_fixed != 'sft'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <field name="percentage" invisible="sft_fixed != 'sft'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <field name="chargeable_area" invisible="sft_fixed != 'sft'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <field name="rate" invisible="sft_fixed != 'sft'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <field name="lum_sum" invisible="sft_fixed != 'Fixed'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <field name="rate2" invisible="sft_fixed != 'Fixed'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <!--                for rent and cam fields-->
+                <field name="cam_rate" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <!--                <field name="rent_rate"/>-->
+            </xpath>
+             <xpath expr="//field[@name='cam_rate']/parent::group" position="inside">
+                <field name="total_rent" string="Total Rent" required="1" widget="monetary"/>
+            </xpath>
+            <xpath expr="//page[2]" position="after">
+                <page string="Supporting Documents">
+                    <field name="supporting_ids">
+                        <list editable="bottom">
+                            <field name="nhcl_description"/>
+                            <field name="start_date"/>
+                            <field name="responsible"/>
+                            <field name="attachment_name" invisible="1" widget="binary"/>
+                            <field name="attachments" filename="attachment_name" widget="binary"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//page[3]" position="after">
+                <page string="Renewals">
+                    <field name="year_ids">
+                        <list editable="bottom">
+                            <field name="start_year"/>
+                            <field name="end_year"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='end_date']" position="after">
+                <field name="caution_deposite" forcesave="1" readonly="is_brand_name_readonly"/>
+                <field name="renewal_type" widget="radio" options="{'horizontal': True}"
+                       readonly="is_brand_name_readonly"/>
+                <field name="quaterly" invisible="renewal_type != 'quat'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <field name="halfday" invisible="renewal_type != 'half'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <field name="ndays" invisible="renewal_type != 'year'" readonly="contract_type == 'running_contract'" forcesave="1"/>
+                <!--                                           <field name="renewal_date" invisible="1"/>-->
+                <field name="renewal_date" invisible="1"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='is_extended']" position="after">
+
+                <field name="unit_no" readonly="is_brand_name_readonly"/>
+                <field name="brand_name" readonly="is_brand_name_readonly"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='tenancy_id']" position="replace">
+                <field name="tenancy_id" readonly="is_brand_name_readonly" required="1"
+                       options="{'no_quick_create':True,'no_create_edit':True}"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='property_id']" position="replace">
+                <field name="property_id" readonly="is_brand_name_readonly" required="1"
+                       options="{'no_quick_create':True,'no_create_edit':True}"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='total_rent']" position="replace">
+                <field name="total_rent" readonly="(is_brand_name_readonly) and (hide_rent)"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='start_date']" position="replace">
+                <field name="start_date" readonly="is_brand_name_readonly"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='end_date']" position="replace">
+                <field name="end_date" readonly="is_brand_name_readonly"/>
+            </xpath>
+            <xpath expr="//form//field[@name='active_contract_state']" position="after">
+                <field name="is_brand_name_readonly" invisible="1"/>
+                <field name="hide_rent" invisible="1"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='tenancy_id']" position="after">
+                <field name="tenancy_type" forcesave="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="tenancy_sft_rate_add" model="ir.ui.view">
+        <field name="name">tenancy.sft</field>
+        <field name="model">tenancy.details</field>
+        <field name="inherit_id" ref="rental_management.tenancy_details_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='contract_type']" position="after">
+                <field name="sft_fixed"/>
+                <field name="carpet_area"/>
+                <field name="chargeable_area"/>
+                <field name="percentage"/>
+                <field name="rate"/>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>
