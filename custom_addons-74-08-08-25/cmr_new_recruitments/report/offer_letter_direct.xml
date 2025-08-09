@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="offer_letter_cmr_direct" model="report.paperformat">
+        <field name="name">Cmr</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">5</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="nhcl_offer_letter_action_direct" model="ir.actions.report">
+        <field name="name">Offer Letter</field>
+        <field name="model">employee.letter</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cmr_new_recruitments.offer_letter_template_direct</field>
+        <field name="report_file">cmr_new_recruitments.offer_letter_template_direct</field>
+        <!--        <field name="paperformat_id" ref="offer_letter_cmr"/>-->
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Header Template -->
+    <template id="nhcl_temp_header_direct">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else='else'>
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <div class="header" style="padding: 10px 0; margin-bottom: 20px;">
+            <div class="row">
+                <div class="col-12"
+                     style="text-align:center; font-family:Verdana, Arial,sans-serif; font-size: 18px; font-weight:bold;">
+                    <!-- Optional Logo or Company Name -->
+                    <!--                    <span t-out="company.name or ''"/>-->
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Main Offer Letter Template -->
+    <template id="offer_letter_main_temp_direct">
+        <t t-call="cmr_new_recruitments.nhcl_temp_header_direct"/>
+
+        <div class="page" style="padding: 30px; margin: 10px;">
+            <table width="100%" style="border-collapse: collapse; font-family: Arial, sans-serif; font-size: 13px;">
+                <tr>
+                    <td>
+                        <div style="text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 20px;">
+                            OFFER LETTER
+                        </div>
+
+                        <p>
+                            <strong>Date:</strong>
+                            <t t-esc="o.todays_date"/>
+                        </p>
+                        <p>
+                            <strong>Name:</strong>
+                            <t t-out="o.employee_id.name"/>
+                        </p>
+                        <p>
+                            <strong>Address:</strong>
+                            Hyderabad
+                        </p>
+
+                        <p>
+                            <strong>Sub:</strong>
+                            Offer Letter for the Position of
+                            <t t-out="o.designation_id.name or 'Store Manager'"/>
+                        </p>
+
+                        <p>
+                            <strong>Dear <t t-out="o.employee_id.name"/>,
+                            </strong>
+                        </p>
+
+                        <p>
+                            This is in reference to the various discussions you had with us and based on mutual
+                            interaction and discussion that we have had, we are pleased to offer you as below.
+                        </p>
+
+                        <p>
+                            <strong>Designation:</strong>
+                            Manager
+                        </p>
+                        <p>
+                            <strong>Location:</strong>
+                            Non-Disclosure
+                        </p>
+                        <p>
+                            <strong>Cost to Company:</strong>
+                            <t t-esc="o.ctc"/>
+                        </p>
+                        <p>
+                            <strong>Date of Joining:</strong>
+                            <t t-esc="o.date_of_joining"/>
+                        </p>
+
+                        <p>
+                            Your gross potential earning compensation &amp; benefits program applicable as per the
+                            statutory compliances and as per company policy. Your compensation is confidential and if
+                            the need arises, you may discuss it only with Management.
+                        </p>
+                        <p>
+                            <b>
+                            Your date of joining shall be on or before  <t t-esc="o.date_of_joining"/>,</b>
+                        </p>
+
+                        <p>
+                            Your initial posting will be in Visakhapatnam. You may, however, be required to move /
+                            relocate to any other office/store/warehouse in any location where the organisation has its
+                            offices and operation either on a temporary or permanent.
+                        </p>
+
+                        <p>
+                            This offer is made to you based on the information /document furnished by you. If any
+                            information and or document are found to be incorrect or has a discrepancy, manipulated,
+                            fabrication forged. Then this offer shall be withdrawn by the company forthwith. The company
+                            shall have the right to background verification on the information and document provided by
+                            you.
+                        </p>
+
+                        <p>
+                            You will be governed by the rules and regulations of the company on all matters related to
+                            the place, time &amp; nature of work. Detailed appointment order will be issued to you in
+                            this regard.
+                        </p>
+                        <p>
+                            On reporting please bring Six Recent Passport Size Photographs, Photocopy of all educational
+                            certificates, proof of age certificate, Pan Card, Proof of residence., Aadhar card, IT
+                            Declaration/ Form 16 from last employer's salary certificate and relieving letter of the
+                            last employer.
+                        </p>
+
+                        <p>
+                            Please return a signed copy of this letter as a token of the offer, confirming your date of
+                            joining.
+                        </p>
+                        <p>
+                            We look forward to a mutually rewarding relationship.
+                        </p>
+
+
+                        <t t-if="o.employee_id">
+                            <hr style="margin: 30px 0; border-top: 1px solid #333;"/>
+                            <h3 style="color:#9A6C8E;">
+                                <strong>Your Contact:</strong>
+                            </h3>
+                            <table style="border: none;">
+                                <tr>
+<!--                                    <td width="80">-->
+<!--                                        <img t-attf-src="/web/image/res.users/{{ o.employee_id.id }}/avatar_128"-->
+<!--                                             style="width: 64px; height: 64px; object-fit: cover;"-->
+<!--                                             alt="Avatar"/>-->
+<!--                                    </td>-->
+                                    <td>
+                                        <strong t-out="o.employee_id.name or ''"/>
+                                        <br/>
+                                        <span>Email:
+                                            <t t-out="o.employee_id.work_email or ''"/>
+                                        </span>
+                                        <br/>
+                                        <span>Phone:
+                                            <t t-out="o.employee_id.mobile_phone or ''"/>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+
+                        <!--                        <hr style="margin: 30px 0; border-top: 1px solid #333;"/>-->
+
+                        <t t-set="location" t-value="''"/>
+                        <t t-if="o.designation_id.address_id.name">
+                            <p>
+                                <strong t-out="o.designation_id.address_id.name or ''"/>
+                            </p>
+                        </t>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <!--                        <t t-if="o.designation_id.address_id.street">-->
+                        <!--                            <p t-out="o.designation_id.address_id.street or ''"/>-->
+                        <!--                            <t t-set="location" t-value="o.designation_id.address_id.street"/>-->
+                        <!--                        </t>-->
+                        <!--                        <t t-if="o.designation_id.address_id.street2">-->
+                        <!--                            <p t-out="o.designation_id.address_id.street2 or ''"/>-->
+                        <!--                            <t t-set="location" t-value="'%s, %s' % (location, o.designation_id.address_id.street2)"/>-->
+                        <!--                        </t>-->
+                        <!--                        <t t-if="o.designation_id.address_id.city">-->
+                        <!--                            <p t-out="o.designation_id.address_id.city or ''"/>-->
+                        <!--                            <t t-set="location" t-value="'%s, %s' % (location, o.designation_id.address_id.city)"/>-->
+                        <!--                        </t>-->
+                        <!--                        <t t-if="o.designation_id.address_id.state_id.name">-->
+                        <!--                            <p t-out="o.designation_id.address_id.state_id.name or ''"/>-->
+                        <!--                            <t t-set="location" t-value="'%s, %s' % (location, o.designation_id.address_id.state_id.name)"/>-->
+                        <!--                        </t>-->
+                        <!--                        <t t-if="o.designation_id.address_id.zip">-->
+                        <!--                            <p t-out="o.designation_id.address_id.zip or ''"/>-->
+                        <!--                            <t t-set="location" t-value="'%s, %s' % (location, o.designation_id.address_id.zip)"/>-->
+                        <!--                        </t>-->
+                        <!--                        <t t-if="o.designation_id.address_id.country_id.name">-->
+                        <!--                            <p t-out="o.designation_id.address_id.country_id.name or ''"/>-->
+                        <!--                            <t t-set="location" t-value="'%s, %s' % (location, o.designation_id.address_id.country_id.name)"/>-->
+                        <!--                        </t>-->
+                        <p>
+                            <strong style="font-size:16px;">
+                                Authorized Signature.
+                            </strong>
+
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </template>
+
+    <template id="offer_letter_template_direct">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="cmr_new_recruitments.offer_letter_main_temp_direct"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <!-- Rent Invoice Sequence -->
+        <record id="seq_invoice_rent" model="ir.sequence">
+            <field name="name">Rent Invoice Sequence</field>
+            <field name="code">invoice.rent.sequence</field>
+            <field name="prefix">RENT/2025/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="active" eval="True"/>
+        </record>
+        <!-- CAM Invoice Sequence -->
+        <record id="seq_invoice_cam" model="ir.sequence">
+            <field name="name">CAM Invoice Sequence</field>
+            <field name="code">invoice.cam.sequence</field>
+            <field name="prefix">CAM/2025/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="active" eval="True"/>
+        </record>
+<!--        regular rent -->
+        <record id="seq_invoice_reg" model="ir.sequence">
+            <field name="name">Regular Invoice Sequence</field>
+            <field name="code">account.invoice.sequence</field>
+            <field name="prefix">INV/2025/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="active" eval="True"/>
+        </record>
+<!--        sequence for Electric -->
+        <record id="seq_invoice_electric" model="ir.sequence">
+            <field name="name">Electric Invoice Sequence</field>
+            <field name="code">electric.invoice.sequence</field>
+            <field name="prefix">EL/2025/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="active" eval="True"/>
+        </record>
+<!--        sequence for gas -->
+         <record id="seq_invoice_gas" model="ir.sequence">
+            <field name="name">Gas Invoice Sequence</field>
+            <field name="code">gas.invoice.sequence</field>
+            <field name="prefix">GS/2025/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="active" eval="True"/>
+        </record>
+<!--        sequence for marketing-->
+         <record id="seq_invoice_marketing" model="ir.sequence">
+            <field name="name">Marketing Invoice Sequence</field>
+            <field name="code">marketing.invoice.sequence</field>
+            <field name="prefix">MARK/2025/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="active" eval="True"/>
+        </record>
+<!--        sequence number for advance-->
+        <record id="seq_invoice_advance" model="ir.sequence">
+            <field name="name">Advanced Invoice Sequence</field>
+            <field name="code">advanced.invoice.sequence</field>
+            <field name="prefix">ADD/2025/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

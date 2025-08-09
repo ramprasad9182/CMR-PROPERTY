@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="maintenance_invoice_message" model="mail.template">
+        <field name="name">Maintenance Message</field>
+        <field name="model_id" ref="nhcl_rental_management.model_account_move"/>
+        <field name="subject">Invoice Bill Reminder</field>
+        <field name="email_from">{{ object.invoice_user_id.login or 'noreply@example.com' }}</field>
+        <field name="email_to">{{object.partner_id.email}}</field>
+        <field name="body_html" type="html">
+            <p>Dear<t t-out="object.partner_id.name"/>,
+            </p>
+            <p>This is a reminder that your bill date is approaching on
+                <strong>
+                    <t t-out="object.invoice_date"/>
+                </strong>
+                .
+            </p>
+            <p>Thank you!</p>
+        </field>
+    </record>
+    <record id="ir_maintenance_invoice_date" model="ir.cron">
+        <field name="name">Invoice maintenance Date mail</field>
+        <field name="model_id" ref="nhcl_rental_management.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">model.send_message_invoice()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>
