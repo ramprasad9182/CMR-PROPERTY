@@ -1,0 +1,23 @@
+<odoo>
+    <template id="report_transaction_receipt">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Food Court Receipt</h2>
+                <p><b>Transaction:</b> <t t-esc="doc.transaction_type"/></p>
+                <p><b>Card:</b> <t t-esc="doc.card_id.card_number"/></p>
+                <p><b>Amount:</b> <t t-esc="doc.amount"/></p>
+                <p><b>Payment:</b> <t t-esc="doc.payment_method"/></p>
+                <p><b>Date:</b> <t t-esc="doc.date"/></p>
+            </div>
+        </t>
+    </template>
+
+    <report
+        id="action_report_transaction_receipt"
+        model="food.court.transaction"
+        string="Transaction Receipt"
+        report_type="qweb-pdf"
+        name="pos_custom_screen.report_transaction_receipt"
+        file="pos_custom_screen.report_transaction_receipt"
+    />
+</odoo>

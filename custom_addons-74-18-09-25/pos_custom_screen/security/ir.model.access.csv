@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_food_court_transactions,access.food.court.transactions,model_food_court_transactions,base.group_user,1,1,1,1
+access_food_court_cards,access.food.court.cards,model_food_court_cards,base.group_user,1,1,1,1
+access_food_court_recharge,access.food.court.recharge,model_food_court_recharge,base.group_user,1,1,1,1
+access_food_court_return,access.food.court.return,model_food_court_return,base.group_user,1,1,1,1

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="custom_card_button_templates" xml:space="preserve">
+<!--    <t t-inherit="point_of_sale.ControlButtons" t-inherit-mode="extension">-->
+    <!--        <xpath expr="//div[contains(@class,'control-buttons')]" position="inside">-->
+    <!--            <button class="btn btn-primary btn-lg"-->
+    <!--                    t-on-click="() => this.openFoodCourtScreen()">-->
+    <!--                <i class="fa fa-credit-card me-1" role="img"-->
+    <!--                   aria-label="Food Court Card"-->
+    <!--                   title="Food Court Card"/>-->
+    <!--                Food Court-->
+    <!--            </button>-->
+    <!--        </xpath>-->
+    <!--    </t>-->
+    <!--    <t t-inherit="point_of_sale.SelectPartnerButton" t-inherit-mode="extension">-->
+    <!--        <xpath expr="//button[hasclass('set-partner')]" position="after">-->
+    <!--                 <button class="btn btn-primary btn-lg"-->
+    <!--                         t-on-click="() => this.openFoodCourtScreen()">-->
+    <!--                <i class="fa fa-credit-card me-1" role="img"-->
+    <!--                   aria-label="Food Court Card"-->
+    <!--                   title="Food Court Card"/>-->
+    <!--                     Customer Card ID-->
+    <!--            </button>-->
+    <!--        </xpath>-->
+    <!--        <xpath expr="//button[hasclass('set-partner')]" position="replace">-->
+    <!--                 <button class="btn btn-primary btn-lg"-->
+    <!--                         t-on-click="() => this.openFoodCourtScreen()">-->
+    <!--                <i class="fa fa-credit-card me-1" role="img"-->
+    <!--                   aria-label="Food Court Card"-->
+    <!--                   title="Food Court Card"/>-->
+    <!--                     Customer Card ID-->
+    <!--            </button>-->
+
+    <!--            <t t-name="pos_custom_screen.FoodCourtButton" owl="1">-->
+    <!--                <button class="btn btn-primary btn-lg"-->
+    <!--                        t-on-click="() => openFoodCourtScreen()">-->
+    <!--                        <i class="fa fa-credit-card me-1"/>-->
+    <!--                    Select Card-->
+    <!--                </button>-->
+
+    <!--            </t>-->
+    <!--    </xpath>-->
+    <!--    </t>-->
+
+
+    <t t-inherit="point_of_sale.SelectPartnerButton" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('set-partner')]" position="replace">
+
+        </xpath>
+<!--        <xpath expr="//button[@class='btn btn-light btn-lg flex-shrink-0 ms-auto']" position="before">-->
+<!--          <button class="btn btn-primary btn-lg"-->
+<!--                  t-on-click="() => this.selectCard()">-->
+<!--                <i class="fa fa-credit-card me-1" role="img"-->
+<!--                   aria-label="Food Court Card"-->
+<!--                   title="Food Court Card"/>-->
+<!--              <t t-if="props.card" t-esc="props.card.name"/>-->
+<!--              <t t-else="">Card ID</t>-->
+<!--            </button>-->
+<!--         </xpath>-->
+    </t>
+<!--    <t t-inherit="point_of_sale.ControlButtons" t-inherit-mode="extension" t-name="pos_custom_screen.ControlButtons">-->
+<!--        <xpath expr="//button[@class='more-btn btn btn-light btn-lg flex-shrink-0']" position="before">-->
+<!--              <button class="btn btn-primary btn-lg"-->
+<!--                  t-on-click="() => this.selectCard()">-->
+<!--                <i class="fa fa-credit-card me-1" role="img"-->
+<!--                   aria-label="Food Court Card"-->
+<!--                   title="Food Court Card"/>-->
+<!--              <t t-if="props.card" t-esc="props.card.name"/>-->
+<!--              <t t-else="">Card ID</t>-->
+<!--            </button>-->
+<!--        </xpath>-->
+<!--    </t>-->
+
+
+
+        </templates>

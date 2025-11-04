@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<record id="view_food_court_transaction_list" model="ir.ui.view">
+    <field name="name">food.court.transaction.list.history</field>
+    <field name="model">food.court.transactions</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="date"/>
+            <field name="card_number"/>
+            <field name="customer_name"/>
+            <field name="transaction_type"/>
+            <field name="amount"/>
+            <field name="balance_after"/>
+            <field name="deposit_used_after"/>
+            <field name="reason"/>
+            <field name="payment_method"/>
+            <field name="receipt_number"/>
+        </list>
+    </field>
+</record>
+<record id="view_food_court_transaction_form" model="ir.ui.view">
+    <field name="name">food.court.transaction.form.history</field>
+    <field name="model">food.court.transactions</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="card_id"/>
+                    <field name="card_number" readonly="1"/>
+                    <field name="customer_name" readonly="1"/>
+                    <field name="transaction_type"/>
+                </group>
+                <group>
+                    <field name="amount"/>
+                    <field name="balance_after" readonly="1"/>
+                    <field name="deposit_used_after" readonly="1"/>
+                    <field name="reason"/>
+                    <field name="payment_method"/>
+                    <field name="receipt_number"/>
+                    <field name="date"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+<record id="action_food_court_transaction" model="ir.actions.act_window">
+    <field name="name">Transaction History Details</field>
+    <field name="res_model">food.court.transactions</field>
+    <field name="view_mode">list,form</field>
+</record>
+<!--     <menuitem id="pos_custom_menu_2"-->
+<!--              name="File payment"-->
+<!--              parent="point_of_sale.menu_point_root"-->
+<!--              action="action_food_court_transaction"-->
+<!--              sequence="13"/>-->
+
+<!--<menuitem id="menu_food_court_transaction" name="Transaction History"-->
+<!--          parent="menu_food_court_root"-->
+<!--          action="action_food_court_transaction"/>-->
+</odoo>

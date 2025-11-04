@@ -1,0 +1,121 @@
+<odoo>
+    <!-- list View -->
+    <record id="view_food_court_card_list" model="ir.ui.view">
+        <field name="name">food.court.card.list</field>
+        <field name="model">food.court.cards</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="card_number"/>
+                <field name="customer_name"/>
+                <field name="mobile"/>
+                <field name="card_amount"/>
+                <field name="card_deposit"/>
+                <field name="balance"/>
+                <field name="issue"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_food_court_card_form" model="ir.ui.view">
+        <field name="name">food.court.card.form</field>
+        <field name="model">food.court.cards</field>
+        <field name="arch" type="xml">
+            <form string="Food Court Card">
+                <header>
+                    <button name="action_issue_card" type="object" string="Issue Card" class="btn btn-success"
+                            invisible="issue"/>
+                </header>
+                <sheet>
+                    <div style="Background-color:#6e3de1cc; margin:0px;padding:10px;border:1px solid #4f4e4a;">
+                        <div style="margin-bottom: 10px;margin-left: 10px; font-size: 18px;color:white;">
+                            Details
+                        </div>
+                        <group>
+                            <group>
+                                <field name="card_number"  style="color: white;"/>
+                            </group>
+                            <group>
+                                <field name="issue" readonly="1"  style="color: white;"/>
+                                <field name="inactive" readonly="1"  style="color: white;"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="mobile"  style="color: white;"/>
+                                <field name="customer_name"  style="color: white;"/>
+                                <field name="card_amount"  style="color: white;"/>
+                                <field name="card_deposit"  style="color: white;"/>
+
+                            </group>
+                            <group>
+                                <field name="issue_date" readonly="1"  style="color: white;"/>
+                                <field name="deposit_used" readonly="1"  style="color: white;"/>
+                                <field name="used"  style="color: white;"/>
+                                <field name="balance" readonly="1"  style="color: white;"/>
+                                <field name="redeemable_balance"  style="color: white;"/>
+                            </group>
+
+                        </group>
+                        <br/>
+                        <div class="row" style="margin:5px;gap:10px;">
+    <button string="10" type="object" name="action_recharge"
+            context="{'amount': 10}"
+            class="btn btn-light col-md-1"
+            style="margin:5px;"/>
+    <button string="20" type="object" name="action_recharge"
+            context="{'amount': 20}"
+            class="btn btn-light col-md-1"
+            style="margin:5px;"/>
+    <button string="50" type="object" name="action_recharge"
+            context="{'amount': 50}"
+            class="btn btn-light col-md-1"
+            style="margin:5px;"/>
+    <button string="100" type="object" name="action_recharge"
+            context="{'amount': 100}"
+            class="btn btn-light col-md-1"
+            style="margin:5px;"/>
+    <button string="200" type="object" name="action_recharge"
+            context="{'amount': 200}"
+            class="btn btn-light col-md-1"
+            style="margin:5px;"/>
+    <button string="500" type="object" name="action_recharge"
+            context="{'amount': 500}"
+            class="btn btn-light col-md-1"
+            style="margin:5px;"/>
+    <button string="2000" type="object" name="action_recharge"
+            context="{'amount': 2000}"
+            class="btn btn-light col-md-1"
+            style="margin:5px;"/>
+    <button string="Clear" type="object" name="action_clear_balance"
+            class="btn btn-warning col-md-1"
+            style="margin:5px;"/>
+</div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_food_court_cards_is" model="ir.actions.act_window">
+        <field name="name">Food Court Cards</field>
+        <field name="res_model">food.court.cards</field>
+        <field name="view_mode">form,list</field>
+    </record>
+
+    <!-- Menu -->
+    <!--    <menuitem id="menu_food_court_root" name="Food Court"/>-->
+    <!--    <menuitem id="menu_food_court_cards" name="Cards" parent="point_of_sale.menu_point_root" sequence="14"-->
+    <!--              action="action_food_court_cards"/>-->
+    <!--    <menuitem id="pos_custom_menu_3"-->
+    <!--              name="New"-->
+    <!--              parent="point_of_sale.menu_point_root"-->
+    <!--              action="action_food_court_cards_is"-->
+    <!--    />-->
+    <!--     <menuitem id="pos_custom_menu_1"-->
+    <!--              name="Payment"-->
+    <!--              parent="point_of_sale.menu_point_root"-->
+    <!--              action="action_food_court_cards_is"-->
+    <!--              sequence="12"/>-->
+</odoo>

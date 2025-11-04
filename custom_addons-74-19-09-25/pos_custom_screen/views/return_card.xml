@@ -1,0 +1,122 @@
+<odoo>
+    <!-- Return list -->
+    <record id="view_food_court_return_list" model="ir.ui.view">
+        <field name="name">food.court.return.list</field>
+        <field name="model">food.court.return</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="card_number"/>
+                <field name="customer_name"/>
+                <field name="refund_amount"/>
+                <field name="reason"/>
+                <field name="return_on"/>
+                <field name="payment_method"/>
+                <field name="receipt_number"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Return Form -->
+    <record id="view_food_court_return_form" model="ir.ui.view">
+        <field name="name">food.court.return.form</field>
+        <field name="model">food.court.return</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_return_card" type="object" string="Return Card" class="oe_highlight"
+                    />
+                </header>
+                <sheet>
+<!--                    <div style="Background-color:#8896AB; margin:0px;padding:10px;border:1px solid #4f4e4a;">-->
+                        <div  style="margin-bottom: 10px; font-size: 18px;color:white">
+                            Details
+                        </div>
+                        <group>
+                            <group>
+                                <field name="card_id" style="color:white;"/>
+                                <field name="card_number" readonly="1" style="color:white;"/>
+                            </group>
+                            <group>
+                                <field name="issue" readonly="1" style="color:white;"/>
+                                <field name="inactive" readonly="1" style="color:white;"/>
+                            </group>
+                            <br/>
+                            <group>
+
+                                <field name="mobile" readonly="1" style="color:white;"/>
+                                <field name="customer_name" readonly="1" style="color:white;"/>
+                                <!--                            -->
+                                <field name="card_amount" readonly="1" style="color:white;"/>
+                                <field name="card_deposit" readonly="1" style="color:white;"/>
+
+                            </group>
+                            <group>
+                                <field name="issue_date" readonly="1"/>
+                                <field name="deposit_used" readonly="1"/>
+                                <field name="used" readonly="1"/>
+                                <field name="balance" readonly="1"/>
+                                <field name="redeemable_balance" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="refund_amount"/>
+                                <field name="receipt_number"/>
+                                <field name="return_on"/>
+                            </group>
+                            <group>
+                                <field name="reason"/>
+                                <field name="payment_method" widget="radio" options="{'horizontal': true}"/>
+                            </group>
+                        </group>
+                        <br/>
+                        <div class="row" style="margin:5px;gap:10px;">
+                            <button string="10" type="object" name="action_recharge"
+                                    context="{'amount': 10}"
+                                    class="btn btn-primary col-md-1"
+                                    style="margin:5px;"/>
+                            <button string="20" type="object" name="action_recharge"
+                                    context="{'amount': 20}"
+                                    class="btn btn-primary col-md-1"
+                                    style="margin:5px;"/>
+                            <button string="50" type="object" name="action_recharge"
+                                    context="{'amount': 50}"
+                                    class="btn btn-primary col-md-1"
+                                    style="margin:5px;"/>
+                            <button string="100" type="object" name="action_recharge"
+                                    context="{'amount': 100}"
+                                    class="btn btn-primary col-md-1"
+                                    style="margin:5px;"/>
+                            <button string="200" type="object" name="action_recharge"
+                                    context="{'amount': 200}"
+                                    class="btn btn-primary col-md-1"
+                                    style="margin:5px;"/>
+                            <button string="500" type="object" name="action_recharge"
+                                    context="{'amount': 500}"
+                                    class="btn btn-primary col-md-1"
+                                    style="margin:5px;"/>
+                            <button string="2000" type="object" name="action_recharge"
+                                    context="{'amount': 2000}"
+                                    class="btn btn-primary col-md-1"
+                                    style="margin:5px;"/>
+                            <button string="Clear" type="object" name="action_clear_balance"
+                                    class="btn btn-warning col-md-1"
+                                    style="margin:5px;"/>
+                        </div>
+<!--                    </div>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Return Action -->
+    <record id="action_food_court_return" model="ir.actions.act_window">
+        <field name="name">Returns</field>
+        <field name="res_model">food.court.return</field>
+        <field name="view_mode">form,list</field>
+    </record>
+
+    <!-- Return Menu -->
+    <!--    <menuitem id="menu_food_court_return" name="Return" parent="menu_food_court_root"-->
+    <!--              action="action_food_court_return"/>-->
+</odoo>

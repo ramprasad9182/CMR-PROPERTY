@@ -1,0 +1,67 @@
+.oe_card_number_input input {
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #2196F3;
+    border-radius: 6px;
+    padding: 8px 12px;
+    letter-spacing: 3px;
+}
+.fc-dashboard {
+    background: black;
+    min-height: 100vh;  /* Full screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Keep cards centered in large screens */
+}
+
+.dashboard-card {
+    border: 2px solid #273f66;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Trebuchet MS', sans-serif;
+    height: 100%;  /* Equal height */
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, #BBDEFB, #90CAF9);
+}
+
+.dashboard-card img {
+    max-width: 100px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dashboard-card:hover img {
+    transform: scale(1.1);
+}
+
+.dashboard-card h5 {
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: yellow;
+}
+
+.dashboard-card {
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: yellow;
+}
+ /* for the form view adding color  */
+.foodcourt-form {
+    background-color: black;  /* light blue */
+}
+

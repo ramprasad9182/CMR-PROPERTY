@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="add_fixed" model="ir.ui.view">
+        <field name="name">tenancy.fixed</field>
+        <field name="model">tenancy.details</field>
+        <field name="inherit_id" ref="rental_management.tenancy_details_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='contract_agreement']" position="after">
+                <h4 style="color:#714B67;">
+                    Breakdown
+                </h4>
+                <br/>
+                <field name="sft_fixed" widget="radio" options="{'horizontal': True}"
+                       readonly="is_brand_name_readonly"/>
+
+                <field name="carpet_area" invisible="sft_fixed != 'sft'" readonly="contract_type == 'running_contract'"
+                       force_save="1"/>
+                <field name="percentage" invisible="sft_fixed != 'sft'" readonly="contract_type == 'running_contract'"
+                       force_save="1"/>
+                <field name="chargeable_area" invisible="sft_fixed != 'sft'"
+                       readonly="contract_type == 'running_contract'" force_save="1"/>
+                <field name="rate" invisible="sft_fixed != 'sft'" readonly="contract_type == 'running_contract'"
+                       force_save="1"/>
+                <field name="lum_sum" invisible="sft_fixed != 'Fixed'" readonly="contract_type == 'running_contract'"
+                       force_save="1"/>
+                <field name="rate2" invisible="1" readonly="contract_type == 'running_contract'"
+                       force_save="1"/>
+                <field name="carpet_value_take" invisible="sft_fixed != 'sft'"
+                       readonly="contract_type == 'running_contract'"/>
+                <!--                for rent and cam fields-->
+<!--                <field name="cam_rate" readonly="contract_type == 'running_contract'" force_save="1"/>-->
+                <!--                <field name="rent_rate"/>-->
+
+            </xpath>
+
+            <xpath expr="//field[@name='duration_id']" position="after">
+                <field name="is_partial_month" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='carpet_value_take']/parent::group" position="inside">
+                <field name="total_rent" string="Total Rent" required="1" widget="monetary"/>
+            </xpath>
+            <xpath expr="//group[4]" position="after">
+                <group>
+                    <group>
+                        <field name="renewal_type" widget="radio" options="{'horizontal': True}"
+                               readonly="is_brand_name_readonly"/>
+
+                        <field name="quaterly" invisible="renewal_type != 'quat'"
+                               readonly="contract_type == 'running_contract'"
+                               force_save="1"/>
+                        <field name="halfday" invisible="renewal_type != 'half'"
+                               readonly="contract_type == 'running_contract'"
+                               force_save="1"/>
+                        <field name="ndays" invisible="renewal_type != 'year'"
+                               readonly="contract_type == 'running_contract'"
+                               force_save="1"/>
+                        <field name="month_date" invisible="renewal_type != 'monthly'"
+                               readonly="contract_type == 'running_contract'"
+                               force_save="1"/>
+                    </group>
+                    <group>
+                        <field name="cam_frequency" options="{'horizontal': True}" widget="radio"/>
+                        <field name="cam_quaterly" invisible="cam_frequency != 'quarterly'"/>
+                        <field name="cam_halfday" invisible="cam_frequency != 'halfyearly'"/>
+                        <field name="cam_ndays" invisible="cam_frequency != 'yearly'"/>
+                        <field name="cam_month_date" invisible="cam_frequency != 'monthly'"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//page[2]" position="after">
+                <page string="Supporting Documents">
+                    <field name="supporting_ids">
+                        <list editable="bottom">
+                            <field name="nhcl_description"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="responsible"/>
+                            <field name="amount"/>
+                            <field name="attachment_name"/>
+                            <field name="attachments" filename="attachment_name" widget="binary"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//page[3]" position="after">
+                <page string=" Rent Renewals">
+                    <field name="year_ids">
+                        <list editable="bottom">
+                            <field name="start_year"/>
+                            <field name="end_date" force_save="1"/>
+                            <field name="end_year"/>
+                            <field name="percentage" readonly="is_first_line"/>
+                            <field name="amount"/>
+                            <field name="is_first_line" column_invisible="1"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//page[4]" position="after">
+                <page string="CAM Renewals">
+                    <field name="cam_year_ids">
+                        <list editable="bottom">
+                            <field name="cam_start_year"/>
+                            <field name="cam_end_date"/>
+                            <field name="cam_end_year"/>
+                            <field name="cam_percentage" readonly="is_first_line_cam"/>
+                            <field name="cam_amount"/>
+                            <field name="is_first_line_cam" column_invisible="1"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//page[5]" position="after">
+                <page string="Trade" name="trade_info_tab">
+                    <group>
+                        <group>
+                            <span style="font-weight:bold;">Trade Category</span>
+                            <field name="trade_category" nolabel="1"/>
+                            <span style="font-weight:bold;">Trade Sub Category 1</span>
+                            <field name="trade_sub_category_1" nolabel="1"/>
+                            <span style="font-weight:bold;">Trade Sub Category 2</span>
+                            <field name="trade_sub_category_2" nolabel="1"/>
+                            <span style="font-weight:bold;">Trade Name</span>
+                            <field name="trade_name" nolabel="1"/>
+                            <span style="font-weight:bold;">Trade No</span>
+                            <field name="trade_no" nolabel="1"/>
+                            <span style="font-weight:bold;">Valid Till</span>
+                            <field name="valid_till" nolabel="1"/>
+                            <span style="font-weight:bold;">Lease To: Owner</span>
+                            <field name="lease_to_owner" nolabel="1"/>
+                            <span style="font-weight:bold;">Lease To: Franchise</span>
+                            <field name="lease_to_franchise" nolabel="1"/>
+                            <span style="font-weight:bold;">Lease To: Tri-Party</span>
+                            <field name="lease_to_triparty" nolabel="1"/>
+                        </group>
+                        <group>
+                            <span style="font-weight:bold;">Possession Notice Date</span>
+                            <field name="possession_notice_date" nolabel="1"/>
+                            <span style="font-weight:bold;">No. of Days of Possession</span>
+                            <field name="possession_days" nolabel="1"/>
+                            <span style="font-weight:bold;">Possession Date</span>
+                            <field name="possession_date" nolabel="1"/>
+                            <span style="font-weight:bold;">Fit-Out Period In Days</span>
+                            <field name="fitout_period_days" nolabel="1"/>
+                            <span style="font-weight:bold;">Fit-Out Completion Date</span>
+                            <field name="fitout_completion_date" nolabel="1"/>
+                            <span style="font-weight:bold;">Fit-Out Exclusive of Possession Date</span>
+                            <field name="fitout_exclusive" nolabel="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//page[6]" position="after">
+                <page string="Security Deposit" name="Security Deposit">
+                    <group>
+                        <!-- Left Column: Float Fields -->
+                        <group>
+                            <span style="font-weight:bold;">Signing Agreement</span>
+                            <field name="signing_agreement" nolabel="1"/>
+
+                            <span style="font-weight:bold;">Store Occupied</span>
+                            <field name="store_occupied" nolabel="1"/>
+
+                            <span style="font-weight:bold;">Store Opened</span>
+                            <field name="store_opened" nolabel="1"/>
+
+                            <span style="font-weight:bold;">Time of Execution</span>
+                            <field name="time_of_execution" nolabel="1"/>
+
+                            <span style="font-weight:bold;">Time of Possession</span>
+                            <field name="time_of_possession" nolabel="1"/>
+
+                        </group>
+
+                        <!-- Right Column: Date Fields -->
+                        <group>
+                            <group>
+                                <span style="font-weight:bold;">Signing Agreement Date</span>
+                                <field name="signing_agreement_date" nolabel="1"/>
+
+                                <span style="font-weight:bold;">Store Occupied Date</span>
+                                <field name="store_occupied_date" nolabel="1"/>
+
+                                <span style="font-weight:bold;">Store Opened Date</span>
+                                <field name="store_opened_date" nolabel="1"/>
+
+                                <span style="font-weight:bold;">Time of Execution Date</span>
+                                <field name="time_of_execution_date" nolabel="1"/>
+
+                                <span style="font-weight:bold;">Time of Possession Date</span>
+                                <field name="time_of_possession_date" nolabel="1"/>
+                            </group>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+
+            <xpath expr="//field[@name='end_date']" position="after">
+                <field name="caution_deposite" force_save="1" readonly="is_brand_name_readonly"/>
+                <br/>
+                <h4></h4>
+                <field name="cau_depo_date" invisible="1"/>
+                <!--                <field name="renewal_type" widget="radio" options="{'horizontal': True}"-->
+                <!--                       readonly="is_brand_name_readonly"/>-->
+                <!--                <field name="quaterly" invisible="renewal_type != 'quat'" readonly="contract_type == 'running_contract'"-->
+                <!--                       force_save="1"/>-->
+                <!--                <field name="halfday" invisible="renewal_type != 'half'" readonly="contract_type == 'running_contract'"-->
+                <!--                       force_save="1"/>-->
+                <!--                <field name="ndays" invisible="renewal_type != 'year'" readonly="contract_type == 'running_contract'"-->
+                <!--                       force_save="1"/>-->
+                <!--                <field name="month_date" invisible="renewal_type != 'monthly'"-->
+                <!--                       readonly="contract_type == 'running_contract'"-->
+                <!--                       force_save="1"/>-->
+                <!--                                           <field name="renewal_date" invisible="1"/>-->
+                <field name="renewal_date" invisible="1"/>
+                <!--                it's fro the cam type operation-->
+                <field name="cam_type" widget="radio" options="{'horizontal': True}"/>
+                 <field name="cam_carpet_area" invisible="cam_type != 'cam_sft'"/>
+                <field name="cam_percentage" invisible="cam_type != 'cam_sft'"/>
+                <field name="cam_chargeable_area" invisible="cam_type != 'cam_sft'"/>
+                <field name="cam_rate" readonly="contract_type == 'running_contract'" force_save="1" invisible="cam_type != 'cam_sft'"/>
+
+                <field name="use_carpet" widget="checkbox" invisible="cam_type != 'cam_sft'"
+                       options="{'horizontal': True}"/>
+                <field name="cam_carpet" invisible="cam_type != 'cam_sft'"
+                       readonly="contract_type == 'running_contract'"
+                       force_save="1" options="{'horizontal': True}"/>
+
+                <field name="use_chargeable" widget="checkbox" invisible="cam_type != 'cam_sft'"
+                       options="{'horizontal': True}"/>
+                <field name="cam_chargeable" invisible="cam_type != 'cam_sft'"
+                       readonly="contract_type == 'running_contract'" options="{'horizontal': True}"
+                       force_save="1"/>
+
+                <field name="cam_fixed" invisible="cam_type != 'cam_lumsum'"
+                       readonly="contract_type == 'running_contract'"
+                       force_save="1"/>
+
+            </xpath>
+            <xpath expr="//group//group//field[@name='is_extended']" position="after">
+
+                <field name="unit_no" readonly="is_brand_name_readonly"/>
+                <field name="brand_name" readonly="is_brand_name_readonly"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='tenancy_id']" position="replace">
+                <field name="tenancy_id" readonly="is_brand_name_readonly" required="1"
+                       options="{'no_quick_create':True,'no_create_edit':True}"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='property_id']" position="replace">
+                <field name="property_id" readonly="is_brand_name_readonly" required="1"
+                       options="{'no_quick_create':True,'no_create_edit':True}"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='property_landlord_id']" position="after">
+                <field name="invoice_type" readonly="is_brand_name_readonly"/>
+
+            </xpath>
+            <!--            <xpath expr="//field[@name='tenancy_type']" position="after">-->
+            <!--                <field name="floor_no" readonly="(is_brand_name_readonly) and (hide_rent)"/>-->
+
+            <!--            </xpath>-->
+            <xpath expr="//group//group//field[@name='total_rent']" position="replace">
+                <field name="total_rent" readonly="(is_brand_name_readonly) and (hide_rent)"/>
+            </xpath>
+            <xpath expr="//field[@name='cam_chargeable']" position="after">
+                <field name="cam_total" invisible="1"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='start_date']" position="replace">
+                <field name="start_date" readonly="is_brand_name_readonly"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='end_date']" position="replace">
+                <field name="end_date" readonly="is_brand_name_readonly"/>
+            </xpath>
+            <xpath expr="//form//field[@name='active_contract_state']" position="after">
+                <field name="is_brand_name_readonly" invisible="1"/>
+                <field name="hide_rent" invisible="1"/>
+            </xpath>
+            <xpath expr="//group//group//field[@name='tenancy_id']" position="after">
+                <field name="tenancy_type" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="tenancy_sft_rate_add" model="ir.ui.view">
+        <field name="name">tenancy.sft</field>
+        <field name="model">tenancy.details</field>
+        <field name="inherit_id" ref="rental_management.tenancy_details_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='contract_type']" position="after">
+                <field name="sft_fixed"/>
+                <field name="carpet_area"/>
+                <field name="chargeable_area"/>
+                <field name="percentage"/>
+                <field name="rate"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

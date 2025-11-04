@@ -1,0 +1,157 @@
+
+<templates xml:space="preserve">
+    <t t-name="pos_custom_screen.FoodCourtDashboards" owl="1">
+        <style>
+            .fc-dashboard {
+    background: white;
+    min-height: 100vh;  /* Full screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+            color:white;
+            margin:0px;
+}
+
+.dashboard-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Keep cards centered in large screens */
+<!--            background:#232982;-->
+
+}
+
+.dashboard-card {
+    border: 2px solid #273f66;
+<!--    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);-->
+    padding: 20px;
+    border-radius: 16px;
+<!--    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);-->
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-family: 'Trebuchet MS', sans-serif;
+    height: 100%;  /* Equal height */
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+<!--    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);-->
+            <!--                background: linear-gradient(135deg, #BBDEFB, #90CAF9);-->
+<!--            background:#232982;-->
+            }
+
+            .dashboard-card img {
+            max-width: 100px;
+            transition: transform 0.3s ease-in-out;
+            }
+
+            .dashboard-card:hover img {
+            transform: scale(1.1);
+            }
+
+            .dashboard-card h5 {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: black;
+            }
+            .food{ color: #E371B1;
+            text-align:left;
+            justify-content:left;
+            background:white;
+            margin:0px;
+            }
+            .customer-icon {
+            width: 40px; /* small size */
+            height: 40px; /* small size */
+            border-radius: 8px; /* slightly rounded corners */
+            cursor: pointer; /* pointer on hover */
+            transition: all 0.3s ease; /* smooth hover effect */
+            margin:10px;
+            }
+
+            /* Hover effect */
+            .customer-icon:hover {
+            <!--    filter: brightness(1.2);   /* make image brighter */-->
+            <!--    transform: scale(1.1);     /* slight zoom */-->
+            <!--    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* light shadow */-->
+            transform: translateX(5px);
+<!--            box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.25);-->
+<!--            background: linear-gradient(135deg, #BBDEFB, #90CAF9);-->
+            }
+<!--            .food:hover{ filter: brightness(0.2);-->
+<!--             transform: scale(1.1);-->
+<!--             box-shadow: 0 4px 8px rgba(0,0,0,0.2);-->
+
+<!--            }-->
+        </style>
+        <h1 class="food">  <img
+                src="/pos_custom_screen/static/src/img/customer.png"
+                alt="Customer"
+                class="customer-icon"/>
+            <t t-esc="state.userName"/></h1>
+        <div class="fc-dashboard o_form_view o_form_editable p-4">
+
+
+            <div class="dashboard-wrapper container-fluid py-4">
+            <div class="row justify-content-center g-4">
+
+                <!-- Issue Card -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="dashboard-card hover-box"
+                         t-on-click="() => this.openAction('pos_custom_screen.action_food_court_cards_is')">
+                        <img src="/pos_custom_screen/static/src/img/Issue.png"
+                             alt="Issue Card"
+                             class="img-fluid mb-3"/>
+                        <h5>Issue Card</h5>
+                    </div>
+                </div>
+
+                <!-- Recharge Card -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="dashboard-card hover-box"
+                         t-on-click="() => this.openAction('pos_custom_screen.action_food_court_recharge')">
+                        <img src="/pos_custom_screen/static/src/img/recharge.png"
+                             alt="Recharge Card"
+                             class="img-fluid mb-3"/>
+                        <h5>Recharge</h5>
+                    </div>
+                </div>
+
+                <!-- Return Card -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="dashboard-card hover-box"
+                         t-on-click="() => this.openAction('pos_custom_screen.action_food_court_return')">
+                        <img src="/pos_custom_screen/static/src/img/return.png"
+                             alt="Return Card"
+                             class="img-fluid mb-3"/>
+                        <h5>Return</h5>
+                    </div>
+                </div>
+
+                <!-- Transactions -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="dashboard-card hover-box"
+                         t-on-click="() => this.openAction('pos_custom_screen.action_food_court_transaction')">
+                        <img src="/pos_custom_screen/static/src/img/list.png"
+                             alt="Transactions"
+                             class="img-fluid mb-3"/>
+                        <h5>Transactions</h5>
+                    </div>
+                </div>
+
+                <!-- Reprint -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="dashboard-card hover-box"
+                         t-on-click="() => this.openAction('pos_custom_screen.action_food_court_card')">
+                        <img src="/pos_custom_screen/static/src/img/print.png"
+                             alt="Reprint"
+                             class="img-fluid mb-3"/>
+                        <h5>Reprint</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </t>
+</templates>

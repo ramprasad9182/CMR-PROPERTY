@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_custom_screen.TextInputPopup">
+        <Dialog title="props.title">
+            <!-- List of all cards -->
+<!--            <div class="d-flex flex-wrap">-->
+<!--                <t t-foreach="props.cards" t-as="card" t-key="card.id">-->
+<!--                    <button t-on-click="() => this.selectCard(card)" type="button"-->
+<!--                            t-att-class="'btn btn-lg me-2 mb-2 ' + (state.selectedCard?.id === card.id ? 'btn-primary' : 'btn-secondary')">-->
+<!--                        <t t-esc="card.card_number"/> &lt;!&ndash; card number &ndash;&gt;-->
+<!--                        <br/>-->
+<!--                        <small><t t-esc="card.mobile"/></small>-->
+<!--                        <br/>-->
+<!--                        <small>Balance: <t t-esc="card.balance"/></small>-->
+<!--                    </button>-->
+<!--                </t>-->
+<!--            </div>-->
+
+            <div>
+    <!-- Table header -->
+    <div class="d-flex fw-bold border-bottom pb-1 mb-1">
+        <div class="flex-grow-1">Card</div>
+        <div class="flex-grow-1">Mobile</div>
+        <div class="flex-grow-1">Balance</div>
+    </div>
+
+    <!-- Table rows -->
+    <t t-foreach="props.cards" t-as="card" t-key="card.id">
+        <div class="d-flex align-items-left py-1 px-2"
+             t-att-class="state.selectedCard?.id === card.id ? 'bg-primary text-white rounded' : ''"
+             t-on-click="() => this.selectCard(card)" style="cursor:pointer;">
+            <div class="flex-grow-1"><t t-esc="card.card_number"/></div>
+            <div class="flex-grow-1"><t t-esc="card.mobile"/></div>
+            <div class="flex-grow-1"><t t-esc="card.balance"/></div>
+        </div>
+    </t>
+</div>
+
+
+            <!-- Show selected card details -->
+<!--            <div class="mt-3" t-if="state.selectedCard">-->
+<!--                <p><strong>ID:</strong> <t t-esc="state.selectedCard.card_number"/></p>-->
+<!--                <p><strong>Mobile:</strong> <t t-esc="state.selectedCard.mobile"/></p>-->
+<!--                <p><strong>Balance:</strong> <t t-esc="state.selectedCard.balance"/></p>-->
+<!--            </div>-->
+
+            <t t-set-slot="footer">
+                <button class="btn btn-primary btn-lg lh-lg o-default-button"
+                        t-on-click="confirm"
+                        t-att-disabled="!state.selectedCard">Apply</button>
+                <button class="btn btn-secondary btn-lg lh-lg o-default-button" t-on-click="close">Discard</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>
