@@ -1,0 +1,105 @@
+<odoo>
+
+    <!-- Tree View -->
+    <record id="view_tree_employee_letter" model="ir.ui.view">
+        <field name="name">employee.letter.list</field>
+        <field name="model">employee.letter</field>
+        <field name="arch" type="xml">
+            <list string="Employee Letters">
+                <field name="employee_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_form_employee_letter" model="ir.ui.view">
+        <field name="name">employee.letter.form</field>
+        <field name="model">employee.letter</field>
+        <field name="arch" type="xml">
+            <form string="Employee Letter">
+                <header>
+                    <button name="action_quotation_send" string="Send Job Offer" type="object"
+                            class="oe_highlight"></button>
+                    <button name="action_appointment_letter_send" string="Send Appointment Letter" type="object"
+                            class="oe_highlight"></button>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="ctc_type"/>
+                    </group>
+                    <notebook>
+                        <page string="Letter Info">
+                            <group>
+                                <field name="todays_date"/>
+                                <field name="date_of_joining"/>
+                                <field name="ctc_offer"/>
+                                <field name="designation_id"/>
+                            </group>
+                        </page>
+                        <page string="CTC BREAKUP">
+                            <form>
+                                <group>
+                                    <group string="CTC Breakdown (Per Annum)">
+                                        <field name="ctc"/>
+                                        <field name="basic"/>
+                                        <field name="hra"/>
+                                        <field name="other_allowance"/>
+                                        <field name="pf" readonly="0"/>
+                                        <field name="pt" readonly="0"/>
+                                        <field name="bonus" readonly="1" invisible="ctc_type not in 'with_bonus'"/>
+                                        <field name="net_take_home" readonly="1"/>
+                                    </group>
+                                    <group string="Monthly Salary Computed">
+                                        <field name="ctc_m" readonly="0"/>
+                                        <field name="basic_m" readonly="1"/>
+                                        <field name="hra_m" readonly="1"/>
+                                        <field name="other_allowance_m" readonly="1"/>
+                                        <field name="pf_m" readonly="0"/>
+                                        <field name="pt_m" readonly="0"/>
+                                        <field name="net_take_home_m" readonly="1"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </page>
+                    </notebook>
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" groups="base.group_user"/>-->
+<!--                        <field name="message_ids"/>-->
+<!--                    </div>-->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_employee_letter" model="ir.actions.act_window">
+        <field name="name">Employee Letters</field>
+        <field name="res_model">employee.letter</field>
+        <field name="view_mode">list,form</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_employee_letter_print_offer_letter" model="ir.actions.server">
+        <field name="name">Print Offer Letter</field>
+        <field name="model_id" ref="cmr_new_recruitments.model_employee_letter"/>
+        <!-- or use the external ID -->
+        <field name="binding_model_id" ref="cmr_new_recruitments.model_employee_letter"/>
+        <field name="binding_type">action</field> <!-- 'object' = gear icon action -->
+        <field name="state">code</field>
+        <field name="code">action = records.action_print_offer_letter()</field>
+    </record>
+
+    <record id="action_employee_letter_print_appointment_letter" model="ir.actions.server">
+        <field name="name">Print Appointment Letter</field>
+        <field name="model_id" ref="cmr_new_recruitments.model_employee_letter"/>
+        <field name="binding_model_id" ref="cmr_new_recruitments.model_employee_letter"/>
+        <field name="binding_type">action</field>
+        <field name="state">code</field>
+        <field name="code">action = records.action_print_appointment_letter()</field>
+    </record>
+
+    <menuitem id="menu_employee_letter_root" name="Employee Letters"
+              parent="hr_recruitment.report_hr_recruitment"
+              action="action_employee_letter"/>
+</odoo>
