@@ -1,0 +1,38 @@
+{
+    'name': 'CMR New Recruitments',
+    'version': '1.0',
+    'summary': 'Customizions on new Recruitments',
+    'depends': ['base', 'hr_recruitment', 'hr', 'survey', 'mail', 'hr_contract','hr_recruitment','l10n_in_hr_payroll','base_accounting_kit','recruitment_interview_form'],
+    'data': [
+        'security/ir.model.access.csv',
+        'security/hr_applicant_security.xml',
+        'security/loan_groups.xml',
+        'data/mail_data.xml',
+        'data/mail_data_appointment.xml',
+        'data/mail_data_direct.xml',
+        'data/mail_data_appointment_direct.xml',
+        'data/experience_document_data.xml',
+        'report/offer_letter.xml',
+        'report/report_appointment_letter.xml',
+        'report/offer_letter_direct.xml',
+        'report/report_appointment_letter_direct.xml',
+        'views/hr_applicant_views.xml',
+        'views/hr_employee_views.xml',
+        'views/employee_letter_views.xml',
+        'views/grade_master_menu.xml',
+        'views/check_list_views.xml',
+        'views/survey_survey_views.xml',
+        'views/hr_job_view.xml',
+        'views/recruitment_application_report_views.xml',
+        'views/account_asset_views.xml',
+        'views/hr_contract_view.xml',
+
+    ],
+'assets': {
+    'web.assets_backend': [
+        # 'cmr_new_recruitments/static/src/js/force_tab.js',
+    ],
+},
+    'installable': True,
+    'application': False,
+}

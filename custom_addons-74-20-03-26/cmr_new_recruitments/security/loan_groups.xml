@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="group_employee_loan_manager" model="ir.module.category">
+        <field name="name">LOAN GROUPS</field>
+        <field name="description">Approval levels for HR applicant</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <!-- First Approval Group -->
+    <record id="group_hr_applicant_loan" model="res.groups">
+        <field name="name">Employee Loan Manager</field>
+        <field name="category_id" ref="cmr_new_recruitments.group_employee_loan_manager"/>
+    </record>
+
+</odoo>
