@@ -1,0 +1,21 @@
+{
+    'name': 'HR Attendance Upload',
+    'version': '18.0.1.0.0',
+    'summary': 'Attendance Upload linked with Employee',
+    'category': 'Human Resources',
+    'author': 'NHCL',
+    'depends': ["hr",
+        "hr_attendance",
+        "hr_holidays",
+        "hr_payroll",],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/hr_upload_wizard_views.xml',
+        'views/hr_upload_views.xml',
+        'views/hr_payslip_view.xml',
+        'views/rooster.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

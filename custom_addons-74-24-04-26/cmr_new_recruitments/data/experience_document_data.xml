@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="doc_reliving_letter" model="experience.document">
+        <field name="name">Relieving Letter</field>
+    </record>
+
+    <record id="doc_offer_letter" model="experience.document">
+        <field name="name">Offer Letter</field>
+    </record>
+
+    <record id="doc_payslip" model="experience.document">
+        <field name="name">Payslips</field>
+    </record>
+
+
+</odoo>

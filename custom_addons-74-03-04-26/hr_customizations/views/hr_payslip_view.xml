@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hr_payslip_form_attendance_summary" model="ir.ui.view">
+        <field name="name">hr.payslip.form.attendance.summary</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='struct_id']" position="after">
+                <field name="present_days" readonly="1"/>
+                <field name="el_days" readonly="1"/>
+                <field name="lop_days" readonly="1"/>
+                <field name="wo_days" readonly="1"/>
+                <field name="month_days" readonly="1"/>
+                <field name="public_holiday_days" readonly="1"/>
+                <field name="el_left" readonly="1"/>
+                <field name="ns_total_amount" readonly="1"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

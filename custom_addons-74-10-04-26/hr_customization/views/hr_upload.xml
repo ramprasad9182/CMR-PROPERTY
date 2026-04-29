@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_attendance_excel_list" model="ir.ui.view">
+        <field name="name">attendance.excel.list</field>
+        <field name="model">attendance.excel</field>
+        <field name="arch" type="xml">
+            <list>
+                <header>
+                    <button name="open_upload_wizard" type="object" string="Upload Excel" display="always"/>
+                </header>
+
+                <field name="emp_code"/>
+                <field name="emp_name"/>
+                <field name="att_date"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="total_time"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_attendance_excel_form" model="ir.ui.view">
+        <field name="name">attendance.excel.form</field>
+        <field name="model">attendance.excel</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="emp_code"/>
+                            <field name="emp_name"/>
+                            <field name="department"/>
+                            <field name="att_date"/>
+                        </group>
+                        <group>
+
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="total_time"/>
+                            <field name="status"/>
+                            <field name="first_session"/>
+                            <field name="second_session"/>
+                            <field name="schedule_check_in"/>
+                            <field name="schedule_check_out"/>
+                            <field name="overtime_hours"/>
+                            <field name="overtime_amount"/>
+
+<!--                            <field name="first_session_dt"/>-->
+<!--                            <field name="second_session_dt"/>-->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- ACTION -->
+    <record id="action_attendance_excel" model="ir.actions.act_window">
+        <field name="name">Attendance Excel</field>
+        <field name="res_model">attendance.excel</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- MENU -->
+    <menuitem id="menu_attendance_excel"
+              name="Attendance Excel"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="action_attendance_excel"
+              sequence="50"/>
+
+</odoo>
+

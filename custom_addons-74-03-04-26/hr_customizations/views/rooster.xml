@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- ACTION -->
+    <record id="action_hr_duty_roster" model="ir.actions.act_window">
+        <field name="name">Duty Roster</field>
+        <field name="res_model">hr.duty.roster</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- MENUS -->
+    <menuitem id="menu_hr_duty_roster_root"
+              name="Duty Roster"
+              parent="hr_attendance.menu_hr_attendance_root"/>
+
+    <menuitem id="menu_hr_duty_roster"
+              name="Monthly Roster"
+              parent="menu_hr_duty_roster_root"
+              action="action_hr_duty_roster"/>
+
+    <!-- TREE -->
+    <record id="view_hr_duty_roster_tree" model="ir.ui.view">
+        <field name="name">hr.duty.roster.tree</field>
+        <field name="model">hr.duty.roster</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="department_id"/>
+                <field name="month"/>
+                <field name="year"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record id="view_hr_duty_roster_form" model="ir.ui.view">
+        <field name="name">hr.duty.roster.form</field>
+        <field name="model">hr.duty.roster</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_roster"
+                            string="Generate Roster"
+                            type="object"
+                            class="btn-primary"
+                              modifiers="{'invisible': [['state','!=','draft']]}"/>
+
+                    <button name="action_confirm"
+                            string="Confirm"
+                            type="object"
+                            invisible="state != 'draft'"/>
+
+                    <field name="state" widget="statusbar"/>
+                </header>
+
+
+                <sheet>
+                    <group>
+                        <field name="department_id"/>
+                        <field name="month"/>
+                        <field name="year"/>
+                        <field name="valid_days" invisible="1"/>
+                    </group>
+
+                    <field name="line_ids">
+                        <list editable="bottom">
+                            <field name="employee_id" frozen="1"/>
+                            <field name="designation" frozen="1"/>
+                            <field name="d1"/>
+                            <field name="d2"/>
+                            <field name="d3"/>
+                            <field name="d4"/>
+                            <field name="d5"/>
+                            <field name="d6"/>
+                            <field name="d7"/>
+                            <field name="d8"/>
+                            <field name="d9"/>
+                            <field name="d10"/>
+                            <field name="d11"/>
+                            <field name="d12"/>
+                            <field name="d13"/>
+                            <field name="d14"/>
+                            <field name="d15"/>
+                            <field name="d16"/>
+                            <field name="d17"/>
+                            <field name="d18"/>
+                            <field name="d19"/>
+                            <field name="d20"/>
+                            <field name="d21"/>
+                            <field name="d22"/>
+                            <field name="d23"/>
+                            <field name="d24"/>
+                            <field name="d25"/>
+                            <field name="d26"/>
+                            <field name="d27"/>
+                            <field name="d28"/>
+                            <field name="d29" invisible="parent.valid_days &lt; 29"/>
+                            <field name="d30" invisible="parent.valid_days &lt; 30"/>
+                            <field name="d31" invisible="parent.valid_days &lt; 31"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+
+
+

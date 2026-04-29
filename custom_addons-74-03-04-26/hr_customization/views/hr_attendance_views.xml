@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Extend Attendance Tree -->
+    <record id="view_hr_attendance_tree_inherit_schedule" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.schedule</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+
+            <!-- After Check Out -->
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="schedule_check_in"/>
+                <field name="schedule_check_out"/>
+            </xpath>
+
+        </field>
+    </record>
+
+      <record id="view_hr_attendance_form_inherit_schedule" model="ir.ui.view">
+        <field name="name">hr.attendance.form.schedule</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Place under Check In / Out -->
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="schedule_check_in"/>
+                <field name="schedule_check_out"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
